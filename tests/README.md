@@ -37,3 +37,26 @@ checks ensure the two-leg model has four non-ground nodes, four bridge sources,
 and no third-leg state, output, switch input, or dummy node. The old three-leg
 interface is compiled and compared against the same circuit equations. Invalid
 dt/C/L/R values and incorrect parameter/terminal counts must be rejected by the CLI.
+
+## AC voltage PI controller
+
+`test_pi_voltage_controller.cpp` is a standalone C++14 regression target. Build
+`test_pi_voltage_controller`, then run:
+
+```text
+ctest --test-dir build -R pi_voltage_controller --output-on-failure
+```
+
+Its eight checks cover Clarke amplitude and zero-sequence rejection, normalized
+voltage error, integral units and sample-time scaling, exact measurement-filter
+step response, feedback polarity, both modulation limits and conditional
+antiwindup, saturation recovery, disable/reset, and a reference ramp supplied by
+the caller. Invalid configurations and enabled measurements are rejected.
+
+The closed-loop test uses an independent first-order averaged converter with a
+3 ms time constant, initially 6000 V per unit modulation. It tracks 6000, 3000,
+then 4200 V and rejects a 10% gain reduction. The plant uses the exact held-input
+solution; this test validates the controller's behavior without reproducing its
+integration in the plant. These are regression-test parameters, not parameters
+claimed to have been published in the paper. Electrical-network tuning and
+switching waveforms remain the responsibility of the separate PI simulation.

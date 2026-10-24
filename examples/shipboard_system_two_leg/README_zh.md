@@ -1,5 +1,7 @@
 # 使用两腿 DC/DC 的船舶系统示例
 
+后续增加了独立的[单逆变器电压幅值 PI 闭环试验](README_PI_zh.md)，包含匹配开环、母线抗扰及 50/25 ns 对照。下文的原始长时案例仍保留。
+
 本示例从 `examples/shipboard_system/shipboard_system.netlist` 派生：两台供电侧 DC/DC 使用正式元件 `BridgeConverter2LegIdealSwitches`，仅保留实际连接正、负母线的 A、B 两腿。六台三相逆变器继续使用原来的三腿元件。原示例保留，便于比较。
 
 ## 网表改动
