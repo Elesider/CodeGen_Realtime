@@ -29,6 +29,7 @@ along with LB-LMC Solver C++ Code Generation Library.  If not, see <https://www.
 #include "codegen/netlist/producers/CurrentSourceProducer.hpp"
 #include "codegen/netlist/producers/FunctionalCurrentSourceProducer.hpp"
 #include "codegen/netlist/producers/FunctionalVoltageSourceProducer.hpp"
+#include "codegen/netlist/producers/BridgeConverter2LegIdealSwitchesProducer.hpp"
 #include "codegen/netlist/producers/BridgeConverter3LegIdealSwitchesProducer.hpp"
 #include "codegen/netlist/producers/InductorProducer.hpp"
 #include "codegen/netlist/producers/MutualInductance3Producer.hpp"
@@ -54,6 +55,7 @@ void ComponentFactory::registerBuiltinComponentProducers()
 	registerComponentProducer( new CurrentSourceProducer() );
 	registerComponentProducer( new FunctionalCurrentSourceProducer() );
 	registerComponentProducer( new FunctionalVoltageSourceProducer() );
+	registerComponentProducer( new BridgeConverter2LegIdealSwitchesProducer() );
 	registerComponentProducer( new BridgeConverter3LegIdealSwitchesProducer() );
     registerComponentProducer( new InductorProducer() );
     registerComponentProducer( new MutualInductance3Producer() );

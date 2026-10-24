@@ -57,7 +57,13 @@ If you need references for C++, commercial simulators, and FPGA tools, see these
 - [GNU Octave documentation](https://octave.org/doc/v6.4.0/)
 - [Xilinx Vivado high level synthesis documentation](https://www.xilinx.com/support/documentation-navigation/design-hubs/dh0012-vivado-high-level-synthesis-hub.html)
 
-## Literature 
+## Two-leg DC/DC shipboard example
+
+`BridgeConverter2LegIdealSwitches(DT, C, L, R) {P, G, N, A, B}` models a split-bus converter with two output legs and forward Euler integration. It has two gate inputs, a bridge enable, and four state outputs. It generates no third-leg state or dummy output node.
+
+The [two-leg shipboard example](examples/shipboard_system_two_leg/README_zh.md) replaces the two DC/DC converters of the original example, removing their unused high-impedance third legs while retaining the six three-phase inverters. It includes an offline long-run testbench, data validation, step-size comparison, and plots. The original three-leg component and example remain available. Generated-solver regressions are described in [tests/README.md](tests/README.md).
+
+## Literature
   
 **The ORTiS solver code generation tools themselves are presented in:**
 
