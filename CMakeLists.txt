@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.24)
 
-project(SolverCodegen)
+project(SolverCodegen LANGUAGES CXX)
 
 add_subdirectory(eigen)
 
@@ -18,3 +18,8 @@ target_sources(SolverCodegen PRIVATE ${SolverCodegen_SOURCE})
 target_link_libraries(SolverCodegen PRIVATE eigen)
 target_include_directories(SolverCodegen PRIVATE include/)
 target_compile_features(SolverCodegen PRIVATE cxx_std_14)
+
+option(SolverCodegen_BUILD_EXAMPLES "Build the standalone CSV simulation examples" ON)
+if(SolverCodegen_BUILD_EXAMPLES)
+    add_subdirectory(examples)
+endif()

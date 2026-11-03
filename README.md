@@ -35,12 +35,26 @@ High Level Synthesis (HLS) of C++ solvers into Register Transfer Level (RTL) des
 This project use `CMake` tools to build.
 
 ```bash
-cmake -S . -B build
-cd build && cmake --build . --config Release
+git submodule update --init eigen
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build --config Release
 ```
 
-> If `CMakeLists.txt` in `Eigen` built error,  
-> please trim the code like `cmake_minimum_required(VERSION 3.24)`.
+The generator uses the bundled Eigen headers without configuring Eigen's legacy
+tests or documentation. No edits to the Eigen submodule's CMake files are needed.
+The simulation examples use standard C++17 and are built by default; their
+pre-generated solvers have no Eigen dependency.
+
+To build only the examples:
+
+```bash
+cmake -S examples -B build/examples -DCMAKE_BUILD_TYPE=Release
+cmake --build build/examples --config Release
+```
+
+See [examples/README.md](examples/README.md) for the RLC, three-phase inverter,
+and two-leg shipboard examples. Each executable generates CSV without arguments;
+its separate Python script draws the results without arguments.
 
 ## License
 
@@ -72,7 +86,7 @@ If you need references for C++, commercial simulators, and FPGA tools, see these
 
 `BridgeConverter2LegIdealSwitches(DT, C, L, R) {P, G, N, A, B}` models a split-bus converter with two output legs and forward Euler integration. It has two gate inputs, a bridge enable, and four state outputs. It generates no third-leg state or dummy output node.
 
-The [two-leg shipboard example](examples/shipboard_system_two_leg/README_zh.md) replaces the two DC/DC converters of the original example, removing their unused high-impedance third legs while retaining the six three-phase inverters. It includes an offline long-run testbench, data validation, step-size comparison, and plots. The original three-leg component and example remain available. Generated-solver regressions are described in [tests/README.md](tests/README.md).
+The [two-leg shipboard example](examples/shipboard_system_two_leg/README.md) replaces the two DC/DC converters of the original example, removing their unused high-impedance third legs while retaining the six three-phase inverters. Its fixed testbench writes CSV for the paper's Fig.16 / Fig.19 scenarios, and a separate Python script draws two figures. The original three-leg component and netlist remain available.
 
 ## Literature
   

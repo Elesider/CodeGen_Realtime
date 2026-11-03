@@ -1,0 +1,30 @@
+% ORTiS solver codegen netlist for Tutorial Demo Model
+
+#name ExampleInverterSystem
+
+% model parameters
+
+#const DT 50.0e-9
+#const VG 1000.0
+#const RG 0.001
+#const CI 0.1
+#const VTH 1.0
+#const LO 0.001
+#const RO 0.0
+#const CO 1.0e-6
+#const RLOAD 10.0
+
+% system netlist
+
+VoltageSource vgp(VG,RG) {1,0}
+VoltageSource vgn(VG,RG) {0,2}
+
+BridgeConverter_3LegIdealSwitchesAntiParallelDiodes converter(DT, CI, LO, RO, VTH) {1,0,2,3,4,5}
+
+Capacitor co1(DT,CO) {3,0}
+Capacitor co2(DT,CO) {4,0}
+Capacitor co3(DT,CO) {5,0}
+
+Resistor rload1(RLOAD) {3,0}
+Resistor rload2(RLOAD) {4,0}
+Resistor rload3(RLOAD) {5,0}

@@ -1,9 +1,11 @@
 #pragma once
 #include "shipboard_zonal_system.hpp"
 struct Sample { double nodes[54]; double outputs[54]; };
+// Keep each experiment's generated solver history independent.
+template<int instance = 0>
 inline void advance(Sample& sample, bool dcdcGates[2][2], bool inverterGates[6][3], const bool enabled[8])
 {
-    shipboard_zonal_system_solver<0, double>(
+    shipboard_zonal_system_solver<instance, double>(
         sample.nodes,
         &sample.outputs[0],
         &sample.outputs[1],
