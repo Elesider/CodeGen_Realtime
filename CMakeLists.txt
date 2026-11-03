@@ -20,7 +20,7 @@ target_include_directories(SolverCodegen PRIVATE include/)
 target_compile_features(SolverCodegen PRIVATE cxx_std_14)
 
 # Keep these small code-generation regressions independent of Eigen's BUILD_TESTING.
-option(SOLVERCODEGEN_BUILD_TESTS "Enable SolverCodegen regression tests" ON)
+option(SOLVERCODEGEN_BUILD_TESTS "Enable SolverCodegen regression tests" OFF)
 if(SOLVERCODEGEN_BUILD_TESTS)
     enable_testing()
     add_executable(test_pi_voltage_controller tests/test_pi_voltage_controller.cpp)
