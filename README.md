@@ -37,7 +37,7 @@ This project use `CMake` tools to build.
 ```bash
 git submodule update --init eigen
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build --config Release
+cmake --build build 
 ```
 
 The generator uses the bundled Eigen headers without configuring Eigen's legacy

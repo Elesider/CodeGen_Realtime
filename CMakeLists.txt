@@ -19,7 +19,7 @@ target_link_libraries(SolverCodegen PRIVATE eigen)
 target_include_directories(SolverCodegen PRIVATE include/)
 target_compile_features(SolverCodegen PRIVATE cxx_std_14)
 
-option(SolverCodegen_BUILD_EXAMPLES "Build the standalone CSV simulation examples" ON)
+option(SolverCodegen_BUILD_EXAMPLES "Build the standalone CSV simulation examples" OFF)
 if(SolverCodegen_BUILD_EXAMPLES)
     add_subdirectory(examples)
 endif()
