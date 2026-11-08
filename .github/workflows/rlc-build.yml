@@ -36,3 +36,10 @@ jobs:
 
       - name: Generate plots and validation
         run: python "$BUILD_DIR/plot.py"
+
+      - name: Upload simulation results
+        uses: actions/upload-artifact@v4
+        with:
+          name: rlc-simulation-results
+          path: build/rlc-system-build/results/
+          if-no-files-found: error
