@@ -6,11 +6,12 @@ The fixed simulation starts from zero initial state and runs for 1 s with a 50 n
 
 ## Build
 
-Run from this directory:
+Run from this directory rlc_system:
 
 ```sh
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build --config Release
+cmake -E rm -rf build 
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release 
+cmake --build build
 ```
 
 ## Run and plot
